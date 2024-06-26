@@ -16,7 +16,7 @@ def random_string(length=10):
 
 def random_action():
     """
-    Performs a random action from the specified list.
+    Performs a random action from the specified list with a 25% chance of clicking each time.
     """
     actions = [
         "click_random",
@@ -35,16 +35,29 @@ def random_action():
         "highlight_random_text",
         "minimize_all_windows",
         "maximize_all_windows",
-        "move_circle",
-        "random_move_and_click"
+        "random_move_and_click",
+        "print_file",
+        "new_tab",
+        "close_tab",
+        "switch_tabs",
+        "refresh_page",
+        "open_task_manager",
+        "open_file_explorer",
+        "find_text",
+        "open_emoji_panel"
     ]
-    action = random.choice(actions)
     
     screen_width, screen_height = pyautogui.size()
     random_x = random.randint(0, screen_width - 1)
     random_y = random.randint(0, screen_height - 1)
     drag_x = random.randint(0, screen_width - 1)
     drag_y = random.randint(0, screen_height - 1)
+
+    # 25% chance to perform a clicking action
+    if random.random() < 0.25:
+        action = random.choice(actions[:8])  # Select from clicking-related actions
+    else:
+        action = random.choice(actions[8:])  # Select from other actions
 
     if action == "click_random":
         pyautogui.click(random_x, random_y)
@@ -83,21 +96,32 @@ def random_action():
         pyautogui.hotkey("win", "d")
     elif action == "maximize_all_windows":
         pyautogui.hotkey("win", "shift", "m")
-    elif action == "move_circle":
-        radius = 100
-        for i in range(360):
-            angle = i * (3.14159 / 180)
-            x = int(random_x + radius * pyautogui.cos(angle))
-            y = int(random_y + radius * pyautogui.sin(angle))
-            pyautogui.moveTo(x, y, duration=0.01)
     elif action == "random_move_and_click":
         for _ in range(10):
             pyautogui.moveTo(random.randint(0, screen_width - 1), random.randint(0, screen_height - 1), duration=0.1)
             pyautogui.click()
+    elif action == "print_file":
+        pyautogui.hotkey("ctrl", "p")
+    elif action == "new_tab":
+        pyautogui.hotkey("ctrl", "t")
+    elif action == "close_tab":
+        pyautogui.hotkey("ctrl", "w")
+    elif action == "switch_tabs":
+        pyautogui.hotkey("ctrl", "tab")
+    elif action == "refresh_page":
+        pyautogui.hotkey("f5")
+    elif action == "open_task_manager":
+        pyautogui.hotkey("ctrl", "shift", "esc")
+    elif action == "open_file_explorer":
+        pyautogui.hotkey("win", "e")
+    elif action == "find_text":
+        pyautogui.hotkey("ctrl", "f")
+    elif action == "open_emoji_panel":
+        pyautogui.hotkey("win", ".")
 
-def toggle_running(event):
+def toggle_running():
     """
-    Toggle the running state when 'r' is pressed.
+    Toggle the running state.
     """
     global running
     running = not running
@@ -112,13 +136,13 @@ def main():
     """
     print("Press 'r' to start/stop the script.")
     
-    # Set up the keyboard event listener
-    keyboard.on_press_key("r", toggle_running)
+    # Set up the keyboard event listener for 'r' key
+    keyboard.add_hotkey('r', toggle_running)
     
     while True:
         if running:
             random_action()
-            time.sleep(0.25)  # Perform a random action pause
+            time.sleep(0.25)  # Perform a random action every half second
         else:
             time.sleep(0.1)  # Sleep briefly to prevent excessive CPU usage when not running
 
