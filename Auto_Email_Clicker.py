@@ -39,7 +39,7 @@ def detect_and_click_images():
 
                 # Custom extra steps after clicking specific images
                 if image == 'detect4.png':
-                    pyautogui.write("Hello beautiful girlfriend!")
+                    pyautogui.write(r"Hello beautiful girlfriend!")
                     print("Typed 'AUTO EMAIL' after clicking detect5.png")
                 elif image == 'detect5.png':
                     pyautogui.write("bmunn3@students.kennesaw.edu")

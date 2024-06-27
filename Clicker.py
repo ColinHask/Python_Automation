@@ -5,7 +5,7 @@ from pynput.mouse import Button, Controller as MouseController
 from pynput.keyboard import Listener, KeyCode
 
 # Set the number of clicks per second
-CPS = 1000
+CPS = 100
 
 # Initialize mouse controller
 mouse = MouseController()
