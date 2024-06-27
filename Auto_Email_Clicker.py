@@ -46,8 +46,8 @@ def detect_and_click_images():
                     print("Typed 'bmunn3@students.kennesaw.edu' after clicking detect5.png")
                 elif image == 'detect6.png':
                     pyautogui.write("I love you <3")
-                    print("Typed 'I love you <3' after clicking detect5.png")    
-
+                    print("Typed 'I love you <3' after clicking detect5.png")
+                
             else:
                 print(f"Image '{image_path}' not found on screen.")
         except Exception as e:
