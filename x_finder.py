@@ -32,7 +32,7 @@ def find_and_move_to_x_button():
                 print(f"Successfully loaded image '{x_button_image}'.")
 
             # Locate the center of the image on the screen
-            location = pyautogui.locateCenterOnScreen(image_path, confidence=0.6)
+            location = pyautogui.locateCenterOnScreen(image_path, confidence=0.7)
             if location is not None:
                 pyautogui.moveTo(location)
                 pyautogui.click()
