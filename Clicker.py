@@ -1,4 +1,4 @@
-# Clicker
+# Clickerr
 import time
 import threading
 from pynput.mouse import Button, Controller as MouseController
